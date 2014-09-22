@@ -1,0 +1,61 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7 expandfull"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8 expandfull"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9 expandfull"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" style="width: 100%; height: 100%;" > <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Worldstates Tree</title>
+        <meta name="description" content="Worldstates Tree">
+        <meta name="viewport" content="width=device-width">
+        <link rel="icon" type="image/png" href="images/world_leaf_16.png"/>
+
+        <!-- bower:css -->
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="bower_components/dynatree/dist/skin/ui.dynatree.css" />
+        <link rel="stylesheet" href="bower_components/crisma-worldstate-tree-widget-angular/dist/styles/crisma-worldstate-tree-widget-angular.css" />
+        
+        <style type="text/css">
+            .catalagoue-tree > ul {
+                height: 100%;
+            }
+        </style>
+        
+        <!-- endbower -->
+    </head>
+    <body style="padding: 0px; width: 100%; height: 100%;" ng-app="de.cismet.crisma.widgets.worldstateTreeWidgetWirecloud">
+        <!--[if lt IE 7]>
+          <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="well well-sm" style="width: 100%; height: 100%;" ng-controller="de.cismet.crisma.widgets.worldstateTreeWidgetWirecloud.wire">
+            <catalogue-tree class="catalagoue-tree"
+                            style="width: 100%; height: 100% !important;" 
+                            options="treeOptions" 
+                            nodes="nodes" 
+                            selection="treeSelection"
+                            active-node="activeItem"></catalogue-tree>
+        </div>
+
+        <!--[if lt IE 9]>
+        <script src="bower_components/es5-shim/es5-shim.js"></script>
+        <script src="bower_components/json3/lib/json3.min.js"></script>
+        <![endif]-->
+
+        <!-- bower:js -->
+        <script src="bower_components/jquery/jquery.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-resource/angular-resource.js"></script>
+        <script src="bower_components/angular-commons/dist/scripts/angular-commons.js"></script>
+        <script src="bower_components/crisma-worldstate-tree-widget-angular/dist/scripts/crisma-worldstate-tree-widget-angular.js"></script>
+        <script src="bower_components/crisma-worldstate-tree-widget-angular/dist/scripts/crisma-worldstate-tree-widget-angular-tpl.js"></script>
+        <script src="bower_components/icmm_js/dist/scripts/icmm_js.min.js"></script>
+        <script src="bower_components/jquery-ui/ui/jquery-ui.js"></script>
+        <script src="bower_components/dynatree/dist/jquery.dynatree.js"></script>
+        <!-- endbower -->
+
+        <!-- build:js({.tmp,app}) scripts/crisma-worldstate-tree-widget-wirecloud.min.js -->
+        <script src="scripts/wire.js"></script>
+        <!-- endbuild -->
+    </body>
+</html>
