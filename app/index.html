@@ -17,6 +17,12 @@
         <link rel="stylesheet" href="bower_components/crisma-worldstate-tree-widget-angular/dist/styles/crisma-worldstate-tree-widget-angular.css" />
         
         <style type="text/css">
+            #tree {
+                height: 100%;
+            }
+            .catalagoue-tree > div {
+                height: 100%;
+            }
             .catalagoue-tree > ul {
                 height: 100%;
             }
@@ -29,12 +35,11 @@
           <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <div class="well well-sm" style="width: 100%; height: 100%;" ng-controller="de.cismet.crisma.widgets.worldstateTreeWidgetWirecloud.wire">
-            <catalogue-tree class="catalagoue-tree"
-                            style="width: 100%; height: 100% !important;" 
-                            options="treeOptions" 
-                            nodes="nodes" 
-                            selection="treeSelection"
-                            active-node="activeItem"></catalogue-tree>
+            <worldstate-tree class="catalagoue-tree"
+                            style="width: 100%; height: 100%" 
+                            options="treeOptions"
+                            selected-worldstates="treeSelection"
+                            active-worldstate="activeItem"></worldstate-tree>
         </div>
 
         <!--[if lt IE 9]>
@@ -43,13 +48,13 @@
         <![endif]-->
 
         <!-- bower:js -->
-        <script src="bower_components/jquery/jquery.js"></script>
+        <script src="bower_components/jquery/dist/jquery.js"></script>
         <script src="bower_components/angular/angular.js"></script>
         <script src="bower_components/angular-resource/angular-resource.js"></script>
         <script src="bower_components/angular-commons/dist/scripts/angular-commons.js"></script>
         <script src="bower_components/crisma-worldstate-tree-widget-angular/dist/scripts/crisma-worldstate-tree-widget-angular.js"></script>
         <script src="bower_components/crisma-worldstate-tree-widget-angular/dist/scripts/crisma-worldstate-tree-widget-angular-tpl.js"></script>
-        <script src="bower_components/icmm_js/dist/scripts/icmm_js.min.js"></script>
+        <script src="bower_components/icmm_js/dist/scripts/icmm_js.js"></script>
         <script src="bower_components/jquery-ui/ui/jquery-ui.js"></script>
         <script src="bower_components/dynatree/dist/jquery.dynatree.js"></script>
         <!-- endbower -->
@@ -57,5 +62,48 @@
         <!-- build:js({.tmp,app}) scripts/crisma-worldstate-tree-widget-wirecloud.min.js -->
         <script src="scripts/wire.js"></script>
         <!-- endbuild -->
+        <script type="text/javascript" >
+            MashupPlatform = {
+                prefs: {
+                    get: function (c) {
+                        var props = {
+                            'DEBUG': 'false',
+                            'CRISMA_DOMAIN': 'CRISMA',
+//                            'CRISMA_ICMM_API': 'http://crisma.cismet.de/icmm_api',
+                            'CRISMA_ICMM_API': 'http://localhost:8890',
+                            'IMAGE_PATH': './images/',
+                            'LEAF_ICON': 'world_leaf_16.png',
+                            'FOLDER_ICON_CLOSED': 'world_16.png',
+                            'FOLDER_ICON_OPEN': 'world_16.png',
+                            'MULTI_SELECT': 'true',
+                            'OPEN_FOLDER_ON_CLICK': 'false'
+                        };
+                        return props[c];
+                    }
+                },
+                wiring: {
+                    registerCallback: function (name, func) {
+                        console.log("registerCallback: [name=" + name + "]");
+                        MashupPlatform[name] = func;
+                    },
+                    pushEvent: function (name, value) {
+                        console.log("pushEvent: [name=" + name + "|value=" + value + "]");
+                        try {
+                            MashupPlatform[name](value);
+                        } catch(e) {
+                            
+                        }
+                    }
+                }
+            };
+            
+//    window.setTimeout(function() {
+//                console.log("push ws");
+//                $.getJSON('http://crisma.cismet.de/pilotE/icmm_api/CRISMA.worldstates/3?omitNullValues=true&deduplicate=true', function (data) {
+//                    MashupPlatform.wiring.pushEvent("setSelectedWorldstates", "[59,60]");
+//                })
+//            }, 2000);
+        </script>
+        
     </body>
 </html>

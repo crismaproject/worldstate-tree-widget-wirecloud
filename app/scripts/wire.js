@@ -2,7 +2,7 @@ angular.module(
     'de.cismet.crisma.widgets.worldstateTreeWidgetWirecloud',
     [
         'de.cismet.crisma.widgets.worldstateTreeWidget',
-        'de.cismet.cids.rest.collidngNames.Nodes',
+        'de.cismet.crisma.ICMM.Worldstates',
         'de.cismet.commons.angular.angularTools'
     ]
 ).controller(
@@ -10,7 +10,7 @@ angular.module(
     [
         '$scope',
         '$q',
-        'de.cismet.collidingNameService.Nodes',
+        'de.cismet.crisma.ICMM.Worldstates',
         'de.cismet.commons.angular.angularTools.AngularTools',
         'IMAGE_PATH',
         'LEAF_ICON',
@@ -22,7 +22,7 @@ angular.module(
         function (
             $scope,
             $q,
-            Nodes,
+            Worldstates,
             AngularTools,
             IMAGE_PATH,
             LEAF_ICON,
@@ -45,7 +45,7 @@ angular.module(
                 mashupPlatform = MashupPlatform;
 
                 $scope.activeItem = {};
-                $scope.treeSelection = [];
+//                $scope.treeSelection = [];
                 $scope.treeOptions = {
                     checkboxClass: 'glyphicon glyphicon-unchecked',
                     folderIconClosed: FOLDER_ICON_CLOSED,
@@ -56,12 +56,8 @@ angular.module(
                     clickFolderMode: (OPEN_FOLDER_ON_CLICK.toLowerCase() === 'true' ? 3 : 1)
                 };
 
-                Nodes.query(function (data) {
-                    $scope.nodes = data;
-                });
-
                 $scope.$watch('treeSelection', function (n) {
-                    var i, id, selWsStringArray, stringifiedArray;
+                    var i, selWsStringArray, stringifiedArray;
 
                     if (DEBUG) {
                         console.log('BEGIN: pushing selected worldstates event: ' + n);
@@ -71,9 +67,8 @@ angular.module(
 
                     if (n) {
                         for (i = 0; i < n.length; ++i) {
-                            if (n[i].objectKey) {
-                                id = parseInt(n[i].objectKey.substr(n[i].objectKey.lastIndexOf('/') + 1), 10);
-                                selWsStringArray.push(id);
+                            if (n[i].id) {
+                                selWsStringArray.push(n[i].id);
                             }
                         }
                     }
@@ -94,7 +89,7 @@ angular.module(
                 $scope.$watch('activeItem', function (n, o) {
                     var id;
 
-                    if (n && o && n.objectKey && o.objectKey && n.objectKey === o.objectKey) {
+                    if (n && o && n.id && o.id && n.id === o.id) {
                         // not rethrowing in case of same object set twice
                         return;
                     }
@@ -105,8 +100,8 @@ angular.module(
 
                     id = -1;
 
-                    if (n && n.objectKey) {
-                        id = parseInt(n.objectKey.substr(n.objectKey.lastIndexOf('/') + 1), 10);
+                    if (n && n.id) {
+                        id = n.id;
                     }
 
                     if (DEBUG) {
@@ -149,7 +144,7 @@ angular.module(
                                 resolve = [];
 
                                 for (i = 0; i < selWsStringArray.length; ++i) {
-                                    resolve[i] = Nodes.get({nodeId: selWsStringArray[i]}).$promise;
+                                    resolve[i] = Worldstates.get({wsId: selWsStringArray[i]}).$promise;
                                 }
 
                                 $q.all(resolve).then(function (selWsArray) {
@@ -193,9 +188,7 @@ angular.module(
 
                     if (newActiveWs) {
                         try {
-                            id = parseInt(newActiveWs, 10);
-
-                            Nodes.get({nodeId: id}).$promise.then(function (ws) {
+                            Worldstates.get({wsId: id}).$promise.then(function (ws) {
                                 setWs(ws);
                             });
                         } catch (e) {
