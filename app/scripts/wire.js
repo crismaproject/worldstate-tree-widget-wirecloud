@@ -45,7 +45,7 @@ angular.module(
                 mashupPlatform = MashupPlatform;
 
                 $scope.activeItem = {};
-//                $scope.treeSelection = [];
+                $scope.treeSelection = [];
                 $scope.treeOptions = {
                     checkboxClass: 'glyphicon glyphicon-unchecked',
                     folderIconClosed: FOLDER_ICON_CLOSED,
@@ -127,7 +127,7 @@ angular.module(
                             console.log('DO: receiving selected worldstates event: ' + arr);
                         }
 
-                        AngularTools.safeApply($scope, function() {
+                        AngularTools.safeApply($scope, function () {
                             $scope.treeSelection = arr;
                         });
 
@@ -168,7 +168,7 @@ angular.module(
                 };
 
                 setActiveWSWirecloud = function (newActiveWs) {
-                    var id, setWs;
+                    var setWs;
 
                     if (DEBUG) {
                         console.log('BEGIN: receiving active worldstate event: ' + newActiveWs);
@@ -188,7 +188,7 @@ angular.module(
 
                     if (newActiveWs) {
                         try {
-                            Worldstates.get({wsId: id}).$promise.then(function (ws) {
+                            Worldstates.get({wsId: newActiveWs}).$promise.then(function (ws) {
                                 setWs(ws);
                             });
                         } catch (e) {

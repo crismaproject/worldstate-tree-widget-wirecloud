@@ -11,7 +11,7 @@
         <Name>crisma-worldstate-tree-widget-wirecloud</Name>
         <!-- Version: Current widget version number-->
         <!-- we include a build # to prevent caching by wirecloud -->
-        <Version>1.0.0.9</Version>
+        <Version>1.0.0.11</Version>
         <!-- DisplayName: Name shown in the UI of the widget -->
         <DisplayName>CRISMA Worldstate Tree Widget</DisplayName>
         <!-- Author: Widget developer(s) -->
@@ -103,13 +103,13 @@
             type="text"
             label="Activate Worldstate"
             description="Let's other widgets select a specific active worldstate. The text has to be a simple worldstate id only so every widget has to agree on a single ICMS instance"
-            friendcode="selectedWorldstates"/>
+            friendcode="activeWorldstate"/>
         <OutputEndpoint
             name="getSelectedWorldstates"
             type="text"
             label="Get the currently selected worldstates"
             description="Let's other widgets know which worldstate is selected. The text is an array of worldstate ids only so every widget has to agree on a single ICMS instance"
-            friendcode="activeWorldstate"/>
+            friendcode="selectedWorldstates"/>
         <OutputEndpoint
             name="getActiveWorldstate"
             type="text"
