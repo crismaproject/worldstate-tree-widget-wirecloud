@@ -87,8 +87,6 @@ angular.module(
                 }, true);
 
                 $scope.$watch('activeItem', function (n, o) {
-                    var id;
-
                     if (n && o && n.id && o.id && n.id === o.id) {
                         // not rethrowing in case of same object set twice
                         return;
@@ -98,20 +96,16 @@ angular.module(
                         console.log('BEGIN: pushing active worldstate event: ' + n);
                     }
 
-                    id = -1;
-
                     if (n && n.id) {
-                        id = n.id;
-                    }
+                        if (DEBUG) {
+                            console.log('DO: pushing active worldstate event: ' + n.id);
+                        }
 
-                    if (DEBUG) {
-                        console.log('DO: pushing active worldstate event: ' + id);
-                    }
+                        mashupPlatform.wiring.pushEvent('getActiveWorldstate', n.id.toString());
 
-                    mashupPlatform.wiring.pushEvent('getActiveWorldstate', id.toString());
-
-                    if (DEBUG) {
-                        console.log('DONE: pushing active worldstate event: ' + id);
+                        if (DEBUG) {
+                            console.log('DONE: pushing active worldstate event: ' + n.id);
+                        }
                     }
                 });
 
