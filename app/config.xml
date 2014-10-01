@@ -11,7 +11,7 @@
         <Name>crisma-worldstate-tree-widget-wirecloud</Name>
         <!-- Version: Current widget version number-->
         <!-- we include a build # to prevent caching by wirecloud -->
-        <Version>1.0.0.13</Version>
+        <Version>1.0.0.16</Version>
         <!-- DisplayName: Name shown in the UI of the widget -->
         <DisplayName>CRISMA Worldstate Tree Widget</DisplayName>
         <!-- Author: Widget developer(s) -->
