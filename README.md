@@ -5,7 +5,9 @@ Wrapper of the [Worldstate Tree (AngularJS)](https://github.com/crismaproject/wo
 
 ## Get started
 
-Simply download the binary from [here](http:crisma.cismet.de/lib/wirecloud/crisma-worldstate-tree-widget-wirecloud.wgt). Then upload the widget to your local marketplace of the WireCloud platform that you want to use. 
+Simply download the binary from [here](http:crisma.cismet.de/lib/wirecloud/crisma-worldstate-tree-widget-wirecloud.wgt). Then upload the widget to your local marketplace of the WireCloud platform that you want to use.
+
+You can also build the widget from scratch. The project uses [npm](https://www.npmjs.org/)/[bower](http://bower.io/)/[grunt](http://gruntjs.com/) for project management. Follow [these instructions](https://gist.github.com/mscholl/a0aef5a8c6664dc275b5) on how to build such a project.
 
 ## Configuration
 
@@ -74,7 +76,7 @@ Simply download the binary from [here](http:crisma.cismet.de/lib/wirecloud/crism
 
 ```xml
 
-<Platform.Wiring>
+    <Platform.Wiring>
         <InputEndpoint
             name="setSelectedWorldstates"
             type="text"
