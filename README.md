@@ -1,4 +1,4 @@
-worldstate-tree-widget-wirecloud
+worldstate-tree-widget-wirecloud [![Build Status](http://ci.cismet.de/buildStatus/icon?job=worldstate-tree-widget-wirecloud)](https://ci.cismet.de/job/worldstate-tree-widget-wirecloud/)
 ==============================
 
 Wrapper of the [Worldstate Tree (AngularJS)](https://github.com/crismaproject/worldstate-tree-widget-angular) to make it available on WireCloud.
